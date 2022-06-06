@@ -1,0 +1,59 @@
+<%- include('parts/head') %>
+<body class="d-flex flex-column">
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <%- include('components/navbar') %>
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <h1 class="fw-bolder">Ro'yxatdan o'tish</h1>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <form id="contactForm" method="POST" action="/register">
+                            <% if (error) { %>
+                                <div class="alert alert-danger text-center"><%= error %></div>
+                            <% } %>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="name" name="name" type="text" required minlength="3"/>
+                                <label for="name">Ism</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="phone" name="phone" type="text" required minlength="13" maxlength="13"/>
+                                <label for="phone">Telefon raqam</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select id="region" class="form-control" name="region">
+                                    <option value="bektemir">Bektemir tumani</option>
+                                    <option value="mirzo_ulugbek">Mirzo Ulug'bek tumani</option>
+                                    <option value="mirobod">Mirobod tumani</option>
+                                    <option value="sergeli">Sergeli tumani</option>
+                                    <option value="olmazor">Olmazor tumani</option>
+                                    <option value="uchtepa">Uchtepa tumani</option>
+                                    <option value="shayxontohur">Shayxontohur tumani</option>
+                                    <option value="yakkasaroy">Yakkasaroy tumani</option>
+                                    <option value="yunusobod">Yunusobod tumani</option>
+                                    <option value="chilonzor">Chilonzor tumani</option>
+                                </select>
+                                <label for="password">Tumaningiz</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="password" type="password" name="password" required minlength="6"/>
+                                <label for="password">Parol</label>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg" type="submit">Ro'yxatdan o'tish</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('components/footer') %>
+<%- include('parts/foot') %>
