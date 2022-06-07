@@ -1,8 +1,9 @@
 const router = require('express').Router()
+const dontEnterAuthorized = require('../middlewares/dont-enter-authorized-middleware')
 
-router.get('/', require('../controllers/register-get'))
+router.get('/', dontEnterAuthorized, require('../controllers/register-get'))
 
-router.post('/', require('../controllers/register-post'))
+router.post('/', dontEnterAuthorized, require('../controllers/register-post'))
 
 module.exports = {
    route: '/register',

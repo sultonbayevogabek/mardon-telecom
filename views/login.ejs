@@ -13,13 +13,16 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <form id="contactForm">
+                        <form id="contactForm" action="/login" method="post">
+                            <% if (error) { %>
+                                <div class="alert alert-danger text-center"><%= error %></div>
+                            <% } %>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="text"/>
+                                <input class="form-control" id="phone" name="phone" type="text" required minlength="13" maxlength="13"/>
                                 <label for="phone">Telefon raqam</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="password" type="password"/>
+                                <input class="form-control" id="password" name="password" type="password" minlength="6"/>
                                 <label for="password">Parol</label>
                             </div>
                             <div class="d-grid">

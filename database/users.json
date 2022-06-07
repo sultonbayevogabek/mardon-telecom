@@ -1,10 +1,1 @@
-[
-  {
-    "id": "fe1f5ce2-4843-428f-9de2-e455f4af014c",
-    "name": "Ogabek19991031",
-    "phone": "998999639773",
-    "region": "sergeli",
-    "role": "user",
-    "references": []
-  }
-]
+[{"id":"beec4c0a-5fbe-4ea7-901d-9500a30f2293","name":"Admin","phone":"998999639773","region":"olmazor","role":"admin","password":"111111","references":[]},{"id":"beec4c0a-5fbe-4ea7-901d-9400a30f2293","name":"Mirobod Usta 1","phone":"998999639772","region":"mirobod","role":"master","password":"111111","references":[]},{"id":"46cb8d7c-04e5-4ff9-aa3b-09639adcdaf2","name":"Mirobod Usta 2","phone":"998111111111","region":"mirobod","role":"master","password":"111111","references":[]},{"id":"777bd125-f06d-41e5-916b-32fd4bf54db3","name":"Mirobod User 2","phone":"998222222222","region":"mirobod","role":"user","password":"111111","references":[]},{"id":"dd07d32e-b7d4-4289-bcfa-30de98ab418b","name":"Chilonzor User 1","phone":"998444444444","region":"bektemir","role":"user","password":"111111","references":[]}]

@@ -19,9 +19,15 @@
                 <li class="nav-item">
                     <a class="nav-link <%= path === 'faq' ? 'active' : ''%>" href="/faq">FAQ</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <%= path === 'login' ? 'active' : ''%>" href="/login">Kirish</a>
-                </li>
+                <% if (!user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link <%= path === 'login' ? 'active' : ''%>" href="/login">Kirish</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cabinet"><%= user.name %></a>
+                    </li>
+                <% } %>
             </ul>
         </div>
     </div>

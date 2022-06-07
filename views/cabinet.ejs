@@ -1,0 +1,203 @@
+<% var masterNotFound %>
+<%- include('parts/head') %>
+
+<body class="d-flex flex-column h-100">
+
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <%- include('components/navbar') %>
+    <!-- Page Content-->
+    <section class="py-5">
+        <div class="container px-5 mt-5">
+            <div class="row gx-5">
+                <div class="col-xl-8">
+                    <h2 class="fw-bolder mb-3">Shaxsiy ma'lumotlar</h2>
+
+                    <form action="/cabinet/edit" method="post">
+                        <% if (error) { %>
+                            <div class="alert alert-danger"><%= error %></div>
+                        <% } %>
+                        <input type="hidden" value="<%= user.id %>" name="id">
+                        <div class="row">
+                            <label class="col-6 mb-3">
+                                <span class="d-block">Ism</span>
+                                <input class="form-control" type="text" name="name" value="<%= user.name %>" minlength="3">
+                            </label>
+                            <label class="col-6 mb-3">
+                                <span class="d-block">Telefon raqam</span>
+                                <input class="form-control" type="text" name="phone" value="+<%= user.phone %>" minlength="13" maxlength="13">
+                            </label>
+                            <label class="col-6 mb-3">
+                                <span class="d-block">Tuman</span>
+                                <select id="region" class="form-control" name="region">
+                                    <option <%= user.region === 'bektemir' ? 'selected' : '' %> value="bektemir">Bektemir tumani</option>
+                                    <option <%= user.region === 'mirzo_ulugbek' ? 'selected' : '' %> value="mirzo_ulugbek">Mirzo Ulug'bek tumani</option>
+                                    <option <%= user.region === 'mirobod' ? 'selected' : '' %> value="mirobod">Mirobod tumani</option>
+                                    <option <%= user.region === 'sergeli' ? 'selected' : '' %> value="sergeli">Sergeli tumani</option>
+                                    <option <%= user.region === 'olmazor' ? 'selected' : '' %> value="olmazor">Olmazor tumani</option>
+                                    <option <%= user.region === 'uchtepa' ? 'selected' : '' %> value="uchtepa">Uchtepa tumani</option>
+                                    <option <%= user.region === 'shayxontohur' ? 'selected' : '' %> value="shayxontohur">Shayxontohur tumani</option>
+                                    <option <%= user.region === 'yakkasaroy' ? 'selected' : '' %> value="yakkasaroy">Yakkasaroy tumani</option>
+                                    <option <%= user.region === 'yunusobod' ? 'selected' : '' %> value="yunusobod">Yunusobod tumani</option>
+                                    <option <%= user.region === 'chilonzor' ? 'selected' : '' %> value="chilonzor">Chilonzor tumani</option>
+                                </select>
+                            </label>
+                            <label class="col-6 mb-3">
+                                <span class="d-block">Parol</span>
+                                <input class="form-control" type="text" name="password" value="<%= user.password %>" minlength="6">
+                            </label>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100">O'zgartirish</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card border-0 bg-light mt-xl-5">
+                        <div class="card-body p-4 py-lg-5">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="text-center">
+                                    <div class="h6 fw-bolder">Qo'shimcha savollaringiz bormi?</div>
+                                    <p class="text-muted mb-4">
+                                        Bizga murojaat qiling
+                                        <br/>
+                                        <a href="mailto: abdullayevmardon@gmail.com">abdullayevmardon@gmail.com</a>
+                                    </p>
+                                    <div class="h6 fw-bolder">A'zo bo'ling</div>
+                                    <a class="fs-5 px-2 link-dark" href="#"><i class="bi-twitter"></i></a>
+                                    <a class="fs-5 px-2 link-dark" href="#"><i class="bi-facebook"></i></a>
+                                    <a class="fs-5 px-2 link-dark" href="#"><i class="bi-linkedin"></i></a>
+                                    <a class="fs-5 px-2 link-dark" href="#"><i class="bi-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <% if (user.role === 'user') { %>
+        <section class="pb-5">
+            <div class="container px-5 mb-5">
+                <div class="row gx-5">
+                    <div class="col-xl-8">
+                        <h2 class="fw-bolder mb-3">Usta chaqirish</h2>
+
+                        <form action="/cabinet/call-master" method="post">
+                            <% if (masterNotFound) { %>
+                                <div class="alert alert-danger"><%= masterNotFound %></div>
+                            <% } %>
+                            <input type="hidden" value="<%= user.id %>" name="id">
+                            <div class="row">
+                                <label class="col-12 mb-3">
+                                    <span class="d-block">Manzilni kiriting (kvartal, uy raqami, podyezd, kvartira raqami)</span>
+                                    <input class="form-control" type="text" name="address" minlength="10" required>
+                                </label>
+                                <label class="col-12 mb-3">
+                                    <span class="d-block">Muammoni tushuntiring</span>
+                                    <textarea class="form-control" name="problem" required minlength="5"></textarea>
+                                </label>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100">Chaqirish</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <% if (user.role === 'admin') { %>
+        <section class="pb-5">
+            <div class="container px-5 mb-5">
+                <div class="row gx-5">
+                    <div class="col-xl-12">
+                        <h2 class="fw-bolder mb-3">Mijozlar ro'yxati</h2>
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Ismi</th>
+                                <th>Roli</th>
+                                <th>Telefoni</th>
+                                <th>Tumani</th>
+                                <th>Rolini o'zgartirish</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% for (let user of users) { %>
+                                <tr>
+                                    <td><%= user.name %></td>
+                                    <td>
+                                        <%= user.role %>
+                                    </td>
+                                    <td>+<%= user.phone %></td>
+                                    <td><%= user.region %></td>
+                                    <td>
+                                        <% if (user.role === 'user') { %>
+                                            <a class="btn btn-primary" href="/cabinet/mark-as-master/<%= user.id %>">Ustalar ro'yxatiga qo'shish</a>
+                                        <% } %>
+                                        <% if (user.role === 'master') { %>
+                                            <a class="btn btn-danger" href="/cabinet/mark-as-user/<%= user.id %>">Ustalar ro'yxatidan o'chirish</a>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <% if (user.role === 'master') { %>
+        <section class="pb-5">
+            <div class="container px-5 mb-5">
+                <div class="row gx-5">
+                    <div class="col-xl-12">
+                        <h2 class="fw-bolder mb-3">Murojaatlar ro'yxati</h2>
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Ismi</th>
+                                <th>Adresi</th>
+                                <th>Muammosi</th>
+                                <th>Vaqti</th>
+                                <th>O'chirish</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% for (let item of user.references) { %>
+                                <tr>
+                                    <td><%= item.name %></td>
+                                    <td>
+                                        <%= item.address %>
+                                    </td>
+                                    <td><%= item.problem %></td>
+                                    <td><%= item.time %></td>
+                                    <td>
+                                        <a class="btn btn-danger" href="/cabinet/delete-call/<%= item.id %>">O'chirish</a>
+                                    </td>
+                                </tr>
+                            <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <section class="pb-5">
+        <div class="container px-5">
+            <a href="/logout" class="btn btn-danger">Profildan chiqish</a>
+        </div>
+    </section>
+</main>
+
+<%- include('components/footer') %>
+<%- include('parts/foot') %>
